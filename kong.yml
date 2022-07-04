@@ -1,0 +1,23 @@
+_format_version: "2.1"
+_transform: true
+
+services:
+  - name: git-api
+    url: https://api.github.com
+    routes:
+      - name: git-route
+        paths:
+          - /git-api
+  - name: service1
+    url: https://python-web-balakuberox-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com/
+    routes:
+      - name: about-route
+        paths:
+          - /about
+
+plugins:
+  - name: rate-limiting
+    service: service1
+    config:
+      minute: 5
+      policy: local
